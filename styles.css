@@ -6,6 +6,7 @@
 html {
     font-family: var(--font-family);
     font-size: 1rem;
+    box-sizing: border-box;
 }
 
 h1 {
@@ -48,7 +49,9 @@ p {
 .padded {
     padding: 1em;
 }
-
+.no-overflow {
+    overflow: hidden;
+}
 /*========== Elements ==========*/
 
 .dashboard_section {
@@ -61,10 +64,12 @@ p {
     padding: 1em 0;    
     gap: .25em;
     margin: .5em 0;
+    position: relative;
 }
 
 .cta_header {
     width: 90%;
+    z-index: 10;
 }
 
 .cta_section {
@@ -89,9 +94,69 @@ p {
     font-weight: bold;
     text-decoration: none;
     font-size: .9rem;
+    max-width: 100px;
+    
+}
+
+/*========== Shifting background pictures ==========*/
+
+.shifting_bg {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    animation: slideAnimation 10s infinite;
 
 }
 
+.bg_picture {
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 1s ease-in-out;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.bg_picture::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-color:#346eff0e; */
+    z-index: 1;
+}
+
+.first{
+    background-image: url('pexels-tima-miroshnichenko-5814285.jpg');
+}
+
+.second{    
+    background-image: url('pexels-yan-krukau-8190101.jpg');
+}
+
+@keyframes slideAnimation {
+    0%, 100% {
+      left: 0;
+    }
+    25% {
+      left: 0;
+    }
+    30% {
+      left: -100%;
+    }
+    95% {
+      left: -100%;
+    }
+  }
 
 
 /* Extra small devices (phones, 600px and down) */
