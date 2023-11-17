@@ -1,0 +1,110 @@
+:root {
+    --main-color: #346DFF;
+    --font-family: Open Sans, sans-serif;
+}
+
+html {
+    font-family: var(--font-family);
+    font-size: 1rem;
+}
+
+h1 {
+    padding: 0;
+    margin: 0;
+}
+
+h3 {
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/*========== Utilities ==========*/
+
+.vertical {
+    flex-direction: column;
+}
+
+.blue {
+    background-color: var(--main-color);
+    color: white;
+}
+.white {
+    background-color: white;
+    color: var(--main-color);
+}
+.bordered{    
+    border: 1px solid var(--main-color);
+}
+
+.padded {
+    padding: 1em;
+}
+
+/*========== Elements ==========*/
+
+.dashboard_section {
+    border-radius: 22px;
+    height: clamp(100px, 15vh, 250px);
+    min-height: 15svh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 0;    
+    gap: .25em;
+    margin: .5em 0;
+}
+
+.cta_header {
+    width: 90%;
+}
+
+.cta_section {
+    border-radius: 16px;
+    height: 100%;
+    width: 100%;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cta_description {
+    font-size: .7rem;
+    font-weight: 100;
+}
+
+.pill_btn {
+    border-radius: 22px;
+    padding: .75em 1em;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: .9rem;
+
+}
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
