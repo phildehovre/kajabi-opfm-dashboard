@@ -253,7 +253,6 @@ ul {
     grid-template-columns: repeat(auto-fill, minmax(48%, 1fr)); /* Adjust the percentage based on your design */
     gap: 10px; /* Adjust the gap as needed for spacing */
     border-radius: 16px;
-    width: 100%;
 }
 
 .quest_header {
