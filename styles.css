@@ -4,9 +4,6 @@
     --text-shadow: 1px 1px 10px black;
 }
 
-* {
-    /* outline: 1px solid red; */
-}
 
 html {
     font-family: var(--font-family);
@@ -52,7 +49,7 @@ p {
 }
 
 .padded {
-    padding: 1em;
+    padding: 1em !important;
 }
 .no-overflow {
     overflow: hidden;
@@ -63,6 +60,11 @@ p {
 }
 .text-shadow {
     text-shadow: var(--text-shadow);
+}
+
+.stretch {
+    height: 100% !important;
+
 }
 /*========== Elements ==========*/
 
@@ -77,6 +79,11 @@ p {
     gap: .25em;
     margin: .5em 0;
     position: relative;
+}
+
+.bg_-wrapper {
+    position: relative;
+    overflow: hidden;
 }
 
 .cta_header {
@@ -107,27 +114,33 @@ p {
     text-decoration: none;
     font-size: .9rem;
     max-width: 100px;
-    
 }
+
+/* =========== Courses ============ */
 
 .categories_ctn {
     display: flex;
     gap: 0.5em;
+    width: 100%;
 }
 
 .category_ctn {
     height: 100%;
     transition: all .5s ease-in-out;
+    border: 1px solid var(--main-color);
+    border-radius: 16px;
 }
 
 ul {
-    padding: 0;
-    margin: 0;
+    margin: -16px 0;
+    padding: 1em;
+    z-index: 0;
 }
 
 .course-list {
     color: black;
     height: 0px;
+    z-index: 0;
 }
 
 .course-list .active {
@@ -141,6 +154,13 @@ ul {
     opacity: 0;
     animation: stagger .5s ease-in-out forwards 1;
     animation-delay: calc(var(--order) * .1s);
+    font-weight: bold;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: .5em;
+    height: 50px;
+    align-items: center;
 }
 
 .course-item:hover {
@@ -157,12 +177,19 @@ ul {
     height: 5svh;
     background-size: cover;
     background-position: center;
+    z-index: 1;
 }
 .accordion_header > h3 {
-    /* width: 100%; */
     text-align: left;
     margin-left: 1em;
     text-shadow: var(--text-shadow);
+}
+
+.img_ctn {
+    min-width: 50px;
+    height: 50px;
+    background-color: lavender;
+    border-radius: 100%;
 }
 
 /*========== Shifting background pictures ==========*/
@@ -210,6 +237,50 @@ ul {
     background-image: url('pexels-yan-krukau-8190101.jpg');
 }
 
+
+/* =========== Quest section ============ */
+
+.quest_section {
+    border-radius: 16px;
+    height: 100%;
+    margin: .5em 0;
+    display:flex;
+    gap: .5em;
+}
+
+.quest_ctn {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(48%, 1fr)); /* Adjust the percentage based on your design */
+    gap: 10px; /* Adjust the gap as needed for spacing */
+    border-radius: 16px;
+    width: 100%;
+}
+
+.quest_header {
+    width: 100%;
+}
+
+
+.quest_item {
+    width: 100%;
+    border-radius: 10px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =========== News ============ */
+
+.news_ctn {
+    /* padding: 1em; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: .5em;
+    height: 100%;
+}
+
 @keyframes slideAnimation {
     0%, 100% {
       left: 0;
@@ -238,13 +309,21 @@ ul {
   }
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 600px) {
+    .large-screen {
+        display: none
+    }
+}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {}
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {}
+@media only screen and (min-width: 768px) {
+    .small-screen {
+        display: none
+    }
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {}

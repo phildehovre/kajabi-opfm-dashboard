@@ -52,6 +52,7 @@ const items = [
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    
     const guitarHeader = document.querySelector('#guitar-header');
     const ukeHeader = document.querySelector('#ukulele-header');
     const guitarList = document.querySelector('#guitar-list');
@@ -62,10 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
             guitarHeader.classList.remove('active');
             guitarList.innerHTML = '';
             guitarList.classList.remove('active');
-
+            
         } else {
-        guitarHeader.classList.toggle('active');
-        guitarList.classList.toggle('active');
+            guitarHeader.classList.toggle('active');
+            guitarList.classList.toggle('active');
         // Clear existing content
         guitarList.innerHTML = '';
         guitarItems.forEach((item, index) => {
@@ -73,18 +74,21 @@ document.addEventListener('DOMContentLoaded', () => {
             li.classList.add('course-item');
             li.style = `--order: ${index}`
             li.textContent = item;
+            const img = document.createElement('div');
+            li.appendChild(img);
+            img.classList.add('img_ctn');
             guitarList.appendChild(li);
-        
-    });
-}
+            
+        });
+    }
 });
 
-    ukeHeader.addEventListener('click', () => {
-        if (ukeHeader.classList.contains('active')) {
-            ukeHeader.classList.remove('active');
-            ukeList.classList.remove('active');
-            ukeList.innerHTML = '';
-        } else {
+ukeHeader.addEventListener('click', () => {
+    if (ukeHeader.classList.contains('active')) {
+        ukeHeader.classList.remove('active');
+        ukeList.classList.remove('active');
+        ukeList.innerHTML = '';
+    } else {
         ukeHeader.classList.toggle('active');
         ukeList.classList.toggle('active');
         // Clear existing content
@@ -94,14 +98,18 @@ document.addEventListener('DOMContentLoaded', () => {
             li.classList.add('course-item');
             li.style = `--order: ${index}`
             li.textContent = item;
+            const img = document.createElement('div');
+            li.appendChild(img);
+            img.classList.add('img_ctn');
             ukeList.appendChild(li);
-        
-    });
-}
+            
+        });
+    }
 }
 );
 
+
 });
 
-  
+
 
