@@ -1,6 +1,11 @@
 :root {
     --main-color: #346DFF;
     --font-family: Open Sans, sans-serif;
+    --text-shadow: 1px 1px 10px black;
+}
+
+* {
+    /* outline: 1px solid red; */
 }
 
 html {
@@ -52,6 +57,13 @@ p {
 .no-overflow {
     overflow: hidden;
 }
+
+.tall {
+    height: 25svh !important; 
+}
+.text-shadow {
+    text-shadow: var(--text-shadow);
+}
 /*========== Elements ==========*/
 
 .dashboard_section {
@@ -96,6 +108,61 @@ p {
     font-size: .9rem;
     max-width: 100px;
     
+}
+
+.categories_ctn {
+    display: flex;
+    gap: 0.5em;
+}
+
+.category_ctn {
+    height: 100%;
+    transition: all .5s ease-in-out;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+.course-list {
+    color: black;
+    height: 0px;
+}
+
+.course-list .active {
+    height: 100%;
+    display: block;
+}
+
+.course-item {
+    list-style: none;
+    padding: .5em 0;
+    opacity: 0;
+    animation: stagger .5s ease-in-out forwards 1;
+    animation-delay: calc(var(--order) * .1s);
+}
+
+.course-item:hover {
+    cursor: pointer;
+    color: var(--main-color)
+}
+
+.accordion_header {
+    color: white;
+    padding: 1em 0; 
+    width: 100%;
+    border-radius: 16px;
+    background-color: lavender;
+    height: 5svh;
+    background-size: cover;
+    background-position: center;
+}
+.accordion_header > h3 {
+    /* width: 100%; */
+    text-align: left;
+    margin-left: 1em;
+    text-shadow: var(--text-shadow);
 }
 
 /*========== Shifting background pictures ==========*/
@@ -158,6 +225,17 @@ p {
     }
   }
 
+  @keyframes stagger {
+    0% {
+      opacity: 0;
+      transform: translateY(80px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  
+  }
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {}
