@@ -237,6 +237,42 @@ ul {
     background-image: url('pexels-yan-krukau-8190101.jpg');
 }
 
+/* =========== Carousel section ============ */
+
+.carousel_ctn {
+    min-height: 50svh;
+    display: block;
+}
+
+.slick-carousel {
+    width: 90%; /* Adjust the width as needed */
+    margin: 0 auto;
+    height: 65svh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    position: relative;
+
+}
+
+.slick-slide {
+background: #fff;
+margin: 0 0.5em;
+min-height: 500px;
+height: 65svh;
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+display: flex;
+flex-direction: column-reverse;
+justify-content: flex-end;
+align-items: end;
+text-align: center;
+border-radius: 16px;
+transition: 250ms all ease-in-out;
+z-index: 0;
+transform: translateY(0.2%);
+}
 
 /* =========== Quest section ============ */
 

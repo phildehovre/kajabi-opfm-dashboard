@@ -52,6 +52,21 @@ const items = [
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    const guitarCarousel = document.querySelector('#guitar_carousel');
+    const ukuleleCarousel = document.querySelector('#ukulele_carousel');
+
+    function appendItems(array, carousel) {
+        array.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.classList.add('slick-slide');
+            div.style = `--order: ${index}`;
+            div.textContent = item;
+            carousel.appendChild(div);
+        })
+    }
+
+    appendItems(guitarItems, guitarCarousel);
+    appendItems(ukeItems, ukuleleCarousel);
     
     const guitarHeader = document.querySelector('#guitar-header');
     const ukeHeader = document.querySelector('#ukulele-header');
@@ -106,6 +121,47 @@ ukeHeader.addEventListener('click', () => {
         });
     }
 }
+);
+
+var carousel = document.querySelectorAll('.carousel');
+
+// Initialize the Slick carousel
+$(carousel).slick({
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  responsive: [
+  {
+    breakpoint: 1024,
+    settings: {
+      slidesToShow: 3,
+      slidesToScroll: 3,
+      infinite: true,
+      dots: true
+    }
+  },
+  {
+    breakpoint: 600,
+    settings: {
+      slidesToShow: 2,
+      slidesToScroll: 2
+    }
+  },
+  {
+    breakpoint: 480,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1
+    }
+  }
+  // You can unslick at a given breakpoint now by adding:
+  // settings: "unslick"
+  // instead of a settings object
+]
+}
+
 );
 
 
