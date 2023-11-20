@@ -58,9 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function appendItems(array, carousel) {
         array.forEach((item, index) => {
             const div = document.createElement('div');
-            div.classList.add('slick-slide');
+            const heading = document.createElement('h2');
+            div.classList.add('item');
             div.style = `--order: ${index}`;
-            div.textContent = item;
+            div.appendChild(heading);
+            heading.textContent = item;
             carousel.appendChild(div);
         })
     }
@@ -127,7 +129,7 @@ var carousel = document.querySelectorAll('.carousel');
 
 // Initialize the Slick carousel
 $(carousel).slick({
-  dots: true,
+  dots: false,
   infinite: true,
   speed: 500,
   slidesToShow: 4,
