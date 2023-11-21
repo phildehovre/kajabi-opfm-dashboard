@@ -43,7 +43,6 @@ const items = [
   ];
 
 
-
   const ukeItems = items.filter(item => {
     return item.match(/uk/i);
   });
@@ -52,7 +51,6 @@ const items = [
   });
 
 document.addEventListener('DOMContentLoaded', () => {
-
 
     const guitarCarousel = document.querySelector('#guitar_carousel');
     const ukuleleCarousel = document.querySelector('#ukulele_carousel');
