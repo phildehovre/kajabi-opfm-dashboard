@@ -1,128 +1,266 @@
-<!DOCTYPE html>
-<script type="module" src="./apis.js">
-</script>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="slick/slick.min.js"></script>
-    <script src="script.js"></script>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="section">
-        <div class="container">
-              <section class="dashboard_section padded blue" id="banner">
-                  <div class="cta_header">
-                      <h1>Welcome back, Marco! </h1>
-                      <!-- <a href="" class="pill_btn blue">Start the challenge</a> -->
-                    </div>
-                </section>
-
-                <!-- Challenges section -->
-                <section class="dashboard_section vertical blue no-overflow tall" id="challenge">
-                    <a href="" class="pill_btn blue">Start the challenge</a>
-                    <div class="shifting_bg">
-                        <div class="bg_picture first">
-                            <div class="cta_header text-shadow">
-                                <h3>Daily Ukulele challenge:</h3>
-                                <h1>Tickle the diddle</h1>
-                            </div>                
-                            <a href="" class="pill_btn blue">Join!</a>
-                        </div>
-                        <div class="bg_picture second">
-                            <div class="cta_header text-shadow">
-                                <h3>Daily guitar challenge:</h3>
-                                <h1>Diddle the fiddle</h1>
-                            </div>
-                            <a href="" class="pill_btn blue">Join!</a>
-                        </div>
-                </div>
-                <!-- CTA section -->
-            </section>
-            <section class="dashboard_section" id="cta">
-                <div class="dashboard_section">
-                    <div class="cta_section left blue">
-                        <h3>Custom feedback</h3>
-                            <p class="cta_description">Send us a video! Click, record review and send.</p>
-                            <a href="" class="pill_btn white">Record</a>
-                        </div>
-                        <div class="cta_section right white bordered">
-                            <h3>Facebook group</h3>
-                            <p class="cta_description">Join our community and share your passion with others.</p>
-                            <a href="" class="pill_btn blue">Join!</a>
-                        </div>
-                    </div>
-                    <div class="dashboard_section padded blue bordered vertical stretch large-screen">
-                        <div class="news_ctn">
-                            <h1 class="cta_header">News</h1>
-                            <h3>Welcome everyone!</h3>
-                            <p>It is with great pleasure that I must announce this great news. The news is out! Let's all celebrate the news that news are new.</p>
-                        </div>
-                    </div>
-                </section>
-                <!-- Courses section -->
-                <section class="categories_ctn vertical small-screen" id="courses">
-                    <div class="category_ctn">
-                            <div class="accordion_header guitar first text-shadow" id="guitar-header">
-                                <h3>
-                                    Guitar courses
-                                </h3>
-                            </div>
-                            <ul class="course_list" id="guitar-list"></ul>
-                        </div>
-                        <div class="category_ctn">
-                            <div class="accordion_header second text-shadow" id="ukulele-header">
-                                <h3>
-                                    Ukulele courses
-                                </h3>
-                            </div>
-                            <ul class="course_list" id="ukulele-list"></ul>
-                        </div>
-                    </section>
-                    <!-- Large screens -->
-                    <section class="large-screen">
-                        <div class="carousel_ctn">
-                            <h1 class="">Guitar courses:</h1>
-                            <div class="carousel" id="guitar_carousel">
-                                
-                            </div>
-                        </div>
-                        <div class="carousel_ctn">
-                            <h1 class="">Ukulele courses:</h1>
-                            <div class="carousel" id="ukulele_carousel">
-                                
-                            </div>
-                        </div>
-                    </section>
-                        <!-- Quest section -->
-                        <section class="quest_section blue padded bordered vertical" id="quest">
-                            <h1 class="quest_header">7 day quest</h1>
-                        <div class="quest_ctn">
-                            <div class="quest_item white">Quest item</div>
-                            <div class="quest_item white">Quest item</div>
-                            <div class="quest_item white">Quest item</div>
-                            <div class="quest_item white">Quest item</div>
-                            <div class="quest_item white">Quest item</div>
-                            <div class="quest_item white">Quest item</div>
-                            <div class="quest_item white">Quest item</div>
-                        </div>
-                    </section>
-                    <!-- News section -->
-                    <section class="dashboard_section blue padded bordered vertical stretch small-screen">
-                        <h1 class="cta_header">News</h1>
-                        <div class="news_ctn">
-                            <h3>Welcome everyone!</h3>
-                            <p>It is with great pleasure that I must announce this great news. The news is out! Let's all celebrate the news that news are new.</p>
-                        <p>It is with great pleasure that I must announce this great news. The news is out! Let's all celebrate the news that news are new.</p>
-                    </div>
-                </section>
-            </div>
-    </div>
-</body>
-</html>
+<style>
+    #section-{{ section.id }} {
+  
+    }
+  </style>
+  
+  <!--
+    This is an example of how to display a setting with a section and make
+    it clickable in the theme editor with a kjb-settings-id
+  -->
+  <div class="section">
+          <div class="container">
+                <section class="dashboard_section short padded blue" id="banner">
+                    <div class="cta_header flex-v-centered" style="color: {{ section.settings.primary_heading_color | append: "!important" }}">
+                    {% if current_site_user %}
+                          <div id="avatar_ctn">
+                              <img src="{{ current_site_user | avatar_url }}" />
+                          </div>
+                        <h1 kjb-settings-id={{ 'heading' | settings_id:section: section }} style="color: {{ section.settings.primary_heading_color | append: "!important" }}" >{{ section.settings.greeting_content | append: ", " }}{{ current_site_user.first_name }}!
+                        </h1>
+                      </div>
+                    {% endif %}
+                  </section>
+                  <!-- Challenges section -->
+                  <section class="dashboard_section vertical blue no-overflow tall" id="challenge">
+                      <!--<a href="" class="pill_btn blue">Start the challenge</a>-->
+                      <div class="shifting_bg" kjb-settings-id={{ "shifting_background" | settings_id: section: section }}>
+                          <div class="bg_picture first" style="background-image: url({{ section.settings.shifting_bg_img1 | image_picker_url }})">
+                              <div class="cta_header vertical" style="color: {{ section.settings.slider_heading_color }}">
+                                  <h3 style="color: {{ section.settings.slider_heading_color }}">Daily Ukulele challenge:</h3>
+                                  <h1 style="color: {{ section.settings.slider_heading_color }}">Tickle the diddle</h1>
+                              </div>                
+                              <a href="" class="pill_btn blue">Join!</a>
+                          </div>
+                          <div class="bg_picture second" style="background-image: url({{ section.settings.shifting_bg_img2 | image_picker_url }})">
+                              <div class="cta_header vertical" style="color: {{ section.settings.slider_heading_color }}">
+                                  <h3 style="color: {{ section.settings.slider_heading_color }}">Daily guitar challenge:</h3>
+                                  <h1 style="color: {{ section.settings.slider_heading_color }}">Diddle the fiddle</h1>
+                              </div>
+                              <a href="" class="pill_btn blue">Join!</a>
+                          </div>
+                  </div>
+                  <!-- CTA section -->
+              </section>
+              <section class="dashboard_section" id="cta">
+                  <div class="dashboard_section cta">
+                      <div class="cta_section left blue" >
+                          <h3 style="color: {{ section.settings.primary_heading_color | append: "!important" }}">Custom feedback</h3>
+                              <p class="cta_description">Send us a video! Click, record review and send.</p>
+                              <a href="" class="pill_btn white">Record</a>
+                          </div>
+                          <div class="cta_section right white bordered" >
+                              <h3 style="color: {{ section.settings.secondary_heading_color | append: "!important" }}">Facebook group</h3>
+                              <p class="cta_description">Join our community and share your passion with others.</p>
+                              <a href="" class="pill_btn blue">Join!</a>
+                          </div>
+                      </div>
+                      <div class="dashboard_section padded blue bordered vertical stretch large-screen">
+                          <div class="news_ctn">
+                              <h1 class="cta_header" style="color: {{ section.settings.primary_heading_color | append: "!important" }}">News</h1>
+                              <h3 style="color: {{ section.settings.primary_heading_color | append: "!important" }}">Welcome everyone!</h3>
+                              <p style="color: {{ section.settings.primary_heading_color | append: "!important" }}">It is with great pleasure that I must announce this great news. The news is out! Let's all celebrate the news that news are new.</p>
+                          </div>
+                      </div>
+                  </section>
+                  <!-- Courses section -->
+                  <section class="categories_ctn vertical small-screen" id="courses">
+                      <div class="category_ctn">
+                              <div class="accordion_header guitar first" id="guitar-header">
+                                  <h3 style="color: {{ section.settings.primary_heading_color | append: "!important" }}">
+                                      Guitar courses
+                                  </h3>
+                              </div>
+                              <ul class="course_list" id="guitar-list"></ul>
+                          </div>
+                          <div class="category_ctn">
+                              <div class="accordion_header second text-shadow" id="ukulele-header">
+                                  <h3 style="color: {{ section.settings.secondary_heading_color | append: "!important" }}">
+                                      Ukulele courses
+                                  </h3>
+                              </div>
+                              <ul class="course_list" id="ukulele-list"></ul>
+                          </div>
+                      </section>
+                      <!-- Large screens -->
+  
+                          <!-- Challenge section -->
+                          <section class="challenge_section" id="challenge">
+                          <h1 class="challenge_header">Ukulele daily challenges</h1>
+                          <div class="challenge_ctn">
+                              {% for block in section.blocks %}
+                                  {% case block.type %}
+                                      {% when "challenge"  %}
+                                          <div class="challenge_item" style="background-image: url({{ block.settings.challenge_bg | image_picker_url }})" kjb-settings-id="{{ "challenge" | settings_id: section: section, block: block }}">
+                                              <div class="challenge_text_wrapper">
+                                                  <h4 class="challenge_weekday" kjb-settings-id="{{ "challenge_day" | settings_id: section: section, block: block }}">{{ block.settings.challenge_day }}</h4>
+                                                  <h2 class="challenge_heading" kjb-settings-id="{{ "challenge_heading" | settings_id: section: section, block: block }}">{{ block.settings.challenge_heading }}</h2>
+                                              </div>
+                                              <div class="challenge_description"  kjb-settings-id="{{ "challenge_description" | settings_id: section: section, block: block }}">
+                                                  <p>{{ block.settings.challenge_description }}</p>
+                                              </div>
+                                          </div>
+                                  {% endcase %}
+                              {% endfor %}
+                          </div>
+                      </section>
+                      <div style="position: relative; width: 100%; height: 0; padding-top: 40.0000%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px; will-change: transform;">  
+                      <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"    src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAFp2Ter1sc&#x2F;view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">  </iframe>
+                      </div>
+                                          <section class="large-screen">
+                          <!--<div class="course_carousel_ctn">-->
+                          <!--    <h1 class="" style="color: {{ section.settings.secondary_heading_color | append: "!important" }}">Guitar masterclasses:</h1>-->
+                          <!--    <div class="carousel-dashboard" id="guitar_carousel">-->
+                          <!--    </div>-->
+                          <!--</div>-->
+                          <div class="course_carousel_ctn">
+                              <h1 class="" style="color: {{ section.settings.secondary_heading_color | append: "!important" }}">Ukulele masterclasses:</h1>
+                              <div class="carousel-dashboard" id="ukulele_carousel">
+                              </div>
+                          </div>
+                      </section>
+                      <!-- News section -->
+                      <section class="dashboard_section blue padded vertical stretch small-screen">
+                          <h1 class="cta_header" style="color: {{ section.settings.primary_heading_color }}">News</h1>
+                          <div class="news_ctn">
+                              <h3 style="color: {{ section.settings.primary_heading_color }}">Welcome everyone!</h3>
+                              <p>It is with great pleasure that I must announce this great news. The news is out! Let's all celebrate the news that news are new.</p>
+                          <p>It is with great pleasure that I must announce this great news. The news is out! Let's all celebrate the news that news are new.</p>
+                      </div>
+                  </section>
+              <div id="products-element">
+                  {% for product in current_site.products %}
+                  <div class="product-element">
+                      {{ product.id }};
+                      {{ product.title }};
+                      {{ product.url }};
+                      {{ product.description }};
+                      {{ product.thumbnail_url }};
+                      {{ product.created_at }};
+                      {{ product.updated_at }};
+                      {{ product.categories_url }};
+                  </div>
+                  {% endfor %}
+              </div>
+              </div>
+      </div>
+  <!--
+  The custom_dashboard.js script is imported in the global_head.liquid file using this syntax:
+      <!--{{ "custom_dashboard.js" | asset_url | script_tag }}-->
+   <!--This seems to have fixed the issue of importing the carousel. Maybe the js in this fikle didn't bubble up all the way there? Or The server wasn't aware that the custom-dashboard file needed to be presesnt in  there somewhere?
+   No idea; Regardless, the console error message is still present, for some reason.
+   -->
+  
+  
+  <!--
+    Section Schema
+    The Schema is what drives the elements, blocks and presets for this particular
+    section. Elements define the setting for the section, while blocks allow you
+    to define sub-sections to add an arrange in this section.
+  
+    Presets define what shows up in the theme editor when a user clicks "Add Section"
+  -->
+  {% schema %}
+  {
+    "name": "Custom Dashboard",
+    "elements": [
+           {
+         "type": "color",
+         "id": "primary_heading_color",
+         "label": "Primary Heading Color",
+         "default": "#FFFFFF"
+       },
+           {
+         "type": "color",
+         "id": "secondary_heading_color",
+         "label": "Secondary Heading Color",
+         "default": "#FFFFFF"
+       },
+      {
+        "type": "rich_text",
+        "id": "greeting_content",
+        "label": "Greeting content",
+        "default": "Welcome back!"
+      },
+           {
+         "type": "color",
+         "id": "slider_heading_color",
+         "label": "Slider headings color",
+         "default": "#FFFFFF"
+       },
+                {
+              "type": "image_picker",
+              "id": "shifting_bg_img1",
+              "label": "Slider: First image"
+            },
+                      {
+              "type": "image_picker",
+              "id": "shifting_bg_img2",
+              "label": "Slider: Second image"
+            }
+    ],
+    "blocks": [
+        {
+          "type": "challenge",
+          "name": "Daily challenge",
+          "elements": [
+                      {
+              "type": "text",
+              "id": "challenge_day",
+              "label": "Day of the week",
+              "default": "Monday"
+            },
+            {
+              "type": "text",
+              "id": "challenge_heading",
+              "label": "challenge heading",
+              "default": "challenge focus"
+            },
+            {
+              "type": "rich_text",
+              "id": "challenge_description",
+              "label": "Challenge description",
+              "default": "Challenge description"
+            },
+            {
+              "type": "action",
+              "id": "link_action",
+              "label": "Link Action",
+              "default": "http://www.kajabi.com"
+            },
+              {
+              "type": "image_picker",
+              "id": "challenge_bg",
+              "label": "Challenge background image"
+            },
+                 {
+       "type": "radio",
+       "id": "radio_button",
+       "label": "Choose an option",
+       "options": [
+         {
+           "value": "false",
+           "label": "Show description"
+         },
+         {
+           "value": "true",
+           "label": "Hide description"
+         }
+       ]
+     }
+          ]
+        }
+        ],
+    "presets": [
+      {
+        "name": "OPFM Dashboard",
+        "category": "Content",
+        "blocks": [],
+        "settings": {
+        }
+      }
+    ]
+  
+  }
+  {% endschema %}
+  

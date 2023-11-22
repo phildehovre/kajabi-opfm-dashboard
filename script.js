@@ -1,77 +1,12 @@
 const productCategories = ['Guitar', 'Ukulele', ]
 
 
-const items = [
-    'YouTube Ukulele',
-    'Just Play Along | Make Your Ukulele Sing',
-    'This Course Makes You Feel Like You Are Playing With a Real Band',
-    'Simple Steps to Fingerstyle Chords',
-    'Spanish Uke Rhythm Masterclass',
-    'Rhythm Technique Every Ukulele Player Should Learn',
-    'Left Hand Tenor Uke Mastery',
-    'Spanish Guitar Rhythm Masterclass',
-    'Beautiful Rhythm Techniques that You\'ll Use Over and Over Again',
-    'Thumb Slap Uke Masterclass',
-    'A Guided Journey to Achieving the N.1 Most Popular Percussive Technique',
-    'Thumb Slapping Guitar Masterclass',
-    'Spanish Uke Rhythm Masterclass Bartione Series',
-    'Rhythm exercises on the beautiful Andalusian cadence. Thaught on baritone ukulele.',
-    'Baritone Ukulele Essentials (Grade 1-5)',
-    'Baritone ukulele essentials is a comprehensive course designed to help beginners and intermediate players learn the fundamentals of playing the baritone ukulele. Throughout the course, you will learn essential chords, strumming patterns, and fingerstyle techniques that will help you become a proficient player.',
-    'Tenor Uke Essentials (Grade 1-5)',
-    'Spanish Tenor Ukulele Grade 1-5',
-    'YouTube Guitar Tabs',
-    'Understanding Basic Chords',
-    'Fingerstyle Guitar Basics Masterclass',
-    'Baritone Ukulele Fingerstyle Basics',
-    'Fingerstyle Tenor Ukulele Basics (Masterclass)',
-    'Spanish Tenor Ukulele',
-    'Tenor Uke Backing Track Melody',
-    'This Course Makes You Feel Like You Are Playing With a Real Band',
-    'Ukulele Duets',
-    'Spanish Baritone Ukulele',
-    'Baritone Uke Backing Track Melody',
-    'This Course Makes You Feel Like You Are Playing With a Real Band',
-    'OPFM Tenor Uke Daily Challenge',
-    'Baritone Duets',
-    'Getting to Know Your Ukulele',
-    'OPFM Daily Uke Challenge.',
-    'Daily Guitar Challenge',
-    'Spanish Guitar',
-    'Strings & Family Lounge - Strings & Family Lounge',
-    'Caged System Guitar'
-  ];
 
-
-
-  const ukeItems = items.filter(item => {
-    return item.match(/uk/i);
-  });
-  const guitarItems = items.filter(item => {
-    return ukeItems.indexOf(item) === -1;
-  });
+  const ukeItems = ['uke1', 'uke2']
+  const guitarItems = ['guitar1', 'guitar2']
 
 document.addEventListener('DOMContentLoaded', () => {
 
-
-    const guitarCarousel = document.querySelector('#guitar_carousel');
-    const ukuleleCarousel = document.querySelector('#ukulele_carousel');
-
-    function appendItems(array, carousel) {
-        array.forEach((item, index) => {
-            const div = document.createElement('div');
-            const heading = document.createElement('h2');
-            div.classList.add('item');
-            div.style = `--order: ${index}`;
-            div.appendChild(heading);
-            heading.textContent = item;
-            carousel.appendChild(div);
-        })
-    }
-
-    appendItems(guitarItems, guitarCarousel);
-    appendItems(ukeItems, ukuleleCarousel);
-    
     const guitarHeader = document.querySelector('#guitar-header');
     const ukeHeader = document.querySelector('#ukulele-header');
     const guitarList = document.querySelector('#guitar-list');
@@ -127,14 +62,104 @@ ukeHeader.addEventListener('click', () => {
 }
 );
 
-var carousel = document.querySelectorAll('.carousel');
+var carousel = document.querySelectorAll('.carousel-dashboard');
+
+// Collecting all rendered products
+const productsElement = document.querySelectorAll('.product-element');
+// Convert the NodeList to an array
+const productsArray = Array.from(productsElement);
+const rawArray = productsArray.map((item) => item.textContent.split(';'));
+
+console.log(rawArray)
+const cleanedProductsArray = rawArray.map((array) => {
+    return [...array].map((item) => {
+        return item.trim()
+    })
+});
+
+const productObjectTemplate = {
+    id: "",
+    title: "",
+    url: "",
+    description: "",
+    thumbnail_url: "",
+    created_at: "",
+    updated_at: "",
+    categories_url: "",
+    placeholder: "",
+    completion: ""
+}
+
+const products = cleanedProductsArray.map((array) => {
+   const object = {...productObjectTemplate};
+   Object.keys(productObjectTemplate).forEach((key, index) => {
+       object[key] = array[index];
+   });
+   return object;
+});
+
+// console.log(products);
+
+  const ukeItems = products.filter(item => {
+    return item.title.match(/uk/i) || item.description.match(/uk/i);
+  });
+  const guitarItems = products.filter(item => {
+    return ukeItems.indexOf(item) === -1;
+  });
+    const guitarCarousel = document.querySelector('#guitar_carousel');
+    const ukuleleCarousel = document.querySelector('#ukulele_carousel');
+
+    function appendItems(array, carousel) {
+        if (carousel) {
+        array.forEach((item, index) => {
+            const course = document.createElement('a');
+            const heading = document.createElement('h2');
+            course.classList.add('course-slide');
+            course.style = `--order: ${index}`;
+            course.setAttribute('href', item.url);
+            course.appendChild(heading);
+            heading.textContent = item.description;
+            course.style = `background-image: url(${item.thumbnail_url})`
+            carousel.appendChild(course);
+            course.addEventListener('mouseenter', () => {
+                heading.classList.add('hovered');
+            })
+            course.addEventListener('mouseleave', () => {
+                heading.classList.remove('hovered');
+            })
+        })
+        } else {
+            console.log("no carousel element")
+        }
+    }
+    
+    
+
+    appendItems(guitarItems, guitarCarousel);
+    appendItems(ukeItems, ukuleleCarousel);
+    
+    // Daily challenges Hover effects
+    
+    const challenges = document.querySelectorAll(".challenge_item")
+        console.log(challenges)
+    challenges.forEach(item => {
+        const description = item.querySelector(".challenge_description")
+            item.addEventListener('mouseenter', () => {
+                description.classList.add('hovered');
+            })
+            item.addEventListener('mouseleave', () => {
+                description.classList.remove('hovered');
+            })
+            
+    })
+
 
 // Initialize the Slick carousel
 $(carousel).slick({
   dots: false,
-  infinite: true,
+  infinite: false,
   speed: 500,
-  slidesToShow: 4,
+  slidesToShow: 2,
   slidesToScroll: 1,
   responsive: [
   {
@@ -170,6 +195,7 @@ $(carousel).slick({
 
 
 });
+
 
 
 
